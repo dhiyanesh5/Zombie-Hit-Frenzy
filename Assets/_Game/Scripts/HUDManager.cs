@@ -35,13 +35,13 @@ public class HUDManager : MonoBehaviour
 
     private void UpdateScore(int score)
     {
-        scoreText.text = "" + score;
+        scoreText.text = $"<size=70%>SCORE</size>\n<size=150%>{score}</size>";
     }
 
     private void UpdateTimer(float timeLeft)
     {
         int seconds = Mathf.CeilToInt(timeLeft);
-        timerText.text = "" + seconds;
+        timerText.text = $"<size=70%>TIMER</size>\n<size=150%>{seconds}</size>";
 
         // Turn red when under 10 seconds
         timerText.color = seconds <= 10 ? Color.red : Color.white;
@@ -55,7 +55,7 @@ public class HUDManager : MonoBehaviour
         if (fpsTimer >= 0.5f)
         {
             currentFPS = frameCount / fpsTimer;
-            fpsText.text = "" + Mathf.RoundToInt(currentFPS);
+            fpsText.text = $"<size=70%>FPS</size>\n<size=150%>{Mathf.RoundToInt(currentFPS)}</size>";
             frameCount = 0;
             fpsTimer = 0f;
         }
@@ -64,7 +64,7 @@ public class HUDManager : MonoBehaviour
     private void ShowGameOver()
     {
         gameOverPanel.SetActive(true);
-        finalScoreText.text = "Total Score\n" + GameManager.Instance.Score;
+        finalScoreText.text = "" + GameManager.Instance.Score;
     }
 
     public void OnRestartButton()

@@ -1,4 +1,4 @@
-# Dead Z Throttle
+# Zombie Hit Frenzy
 **Associate Unity Developer Technical Test**
 **Dhiyanesh G — IIT Guwahati**
 
@@ -13,20 +13,20 @@
 ---
 
 ## How to Play
-Touch anywhere and drag to drive. Drag direction steers the car. Hit zombies to score. Restart from the end screen.
+Tap the title screen to start. Touch and drag anywhere to drive. Drag direction steers the car. Hit zombies to score. Restart from the end screen.
 
 ---
 
 ## Prometeo → Hot Slide Adaptation
 
-A bridge pattern sits on top of Prometeo without touching its physics:
+A bridge pattern sits on top of Prometeo without touching its physics internals:
 
-- **SwipeInputHandler** converts touch drag into a world-space direction using the camera's forward/right axes — so dragging up always means "toward the camera" regardless of angle
-- **CarInputBridge** calls Prometeo's public methods based on that direction — GoForward() while touching, TurnLeft/TurnRight via SignedAngle between car facing and drag direction
+- **SwipeInputHandler** converts touch drag into a world-space direction using the camera's forward and right axes — dragging up always means toward the camera regardless of angle
+- **CarInputBridge** calls Prometeo's public methods — GoForward() while touching, TurnLeft/TurnRight via SignedAngle between car facing and drag direction
 
 Changes made to PrometeoCarController.cs:
 - `deceleratingCar`, `GoForward()`, `GoReverse()` made public
-- `ResetSteeringAngle()` rewritten to remove keyboard Input.GetAxis dependency
+- `ResetSteeringAngle()` rewritten to remove Input.GetAxis keyboard dependency
 - Keyboard else-block stripped of auto ThrottleOff/DecelerateCar calls — these were overriding our input every frame
 
 ---
